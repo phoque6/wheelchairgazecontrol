@@ -21,7 +21,7 @@ webcam = cv2.VideoCapture(1)
 
 # Pyrebase
 config = {
-   # "apiKey": "AIzaSyBuJAiqLUOyBcEZFX9-GbFpYpO2CSyTsL8",
+   # "apiKey": "yourapikey",
 	# "authDomain": "nodemcu-6a1b8.firebaseapp.com",
 	# "databaseURL": "https://nodemcu-6a1b8-default-rtdb.firebaseio.com",
 	# "projectId": "nodemcu-6a1b8",
@@ -29,7 +29,7 @@ config = {
 	# "messagingSenderId": "578188294320",
 	# "appId": "1:578188294320:web:8028e229c90a3dfc7b2375",
 	# "measurementId": "G-WPSY8SRPDW"
-    "apiKey": "AIzaSyCbSsu4aLsGJp_WLbVRkNdtEPJNxaJkWIY",
+    "apiKey": "yourapike",
     "authDomain": "nodemcu-6a1b8-wheelchair.firebaseapp.com",
     "databaseURL": "https://nodemcu-6a1b8-wheelchair-default-rtdb.asia-southeast1.firebasedatabase.app",
     "projectId": "nodemcu-6a1b8-wheelchair",
