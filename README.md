@@ -1,113 +1,84 @@
-# Eye-tracking
-EPICS project- Eyeball controlled wheelchair
+Project ARGOS: Eye-Controlled ESP32 Wheelchair for Assistive Mobility
+1. Introduction: The Need for Innovation in Assistive Technology
 
-## 1. INTRODUCTION
-Paralysis is a loss of strength in and control over a muscle or group of muscles in a part of the
-body. Most of the time, this is not due to a problem with the muscles themselves. It is more
-likely due to a problem somewhere along the chain of nerve cells that runs from the body part
-to your brain and back again. These nerve cells deliver the signals for your muscles to move.
-When any part of the relay system — such as the brain, spinal cord, nerves, or junction
-between the nerve and the muscle — is damaged, the signals to move do not make it through
-to the muscles and paralysis results. There are many ways the relay system can be damaged
-and could take a heavy toll on person’s life. However, as the science progresses new
-technologies have emerged to our aid against this disease 
+Paralysis affects millions worldwide—restricting voluntary muscle movement due to damage along the neural pathways between the brain and muscles. While advances in medicine have improved diagnosis and treatment, motor rehabilitation remains a significant challenge for individuals with conditions such as quadriplegia, ALS (Lou Gehrig’s Disease), or spinal cord injuries.
 
-## 1.1 Objectives
-1. To build a hardware system that would track the eye movement to send messages to the
-software.
-2. Tracking of eye movement to help patients to interact and type on the screen without
-physically touching anything.
-3. To enable patients to move their car through the movement of their eye.
-4. Muscle Stimulation: To build a hardware system to detect muscle movement to send
-response to the software counterpart.
+Project ARGOS emerges as an innovative response—a proof-of-concept smart wheelchair prototype controlled entirely by eye movements, enabling hands-free mobility through the integration of computer vision, cloud computing, and robotics.
 
-## 1.2 Working Principle:
-Eye Tracking: Almost all of the technologies use a basic framework that operates through
-rapid periodic sampling of the position of the participant’s eyes. Samples are taken at rapid
-intervals (for instance, every 16 milliseconds). The position of the eyes at each sampling
-point is determined on the basis of light reflected from the curvature of the corneas and the
-position of the pupils. To determine this, a low level of infrared light is projected from the
-eye tracking device. The infrared light, which is invisible to humans, is reflected off the eyes
-and the angle of reflection is captured by a camera. A calibration procedure conducted at the
-outset of the session (described below) allows the technology to match the physical
-orientation of the eyes to specific coordinates on the monitor, providing the data input stream.
-The data stream is recorded as a set of x-y coordinates of the point of gaze for each sample
-obtained. Most programs also offer a variety of visualization options for displaying either
-individual data patterns from a single participant or aggregated patterns across groups of
-participants.
+Named after Argos Panoptes, the all-seeing giant of Greek mythology, the system acts as the "eyes" for users who are otherwise immobilised. With no physical input devices needed, Project ARGOS uses AI to translate gaze direction and blinking into motion commands.
 
-# 2. major steps that provide the basic framework for eye tracking are:
+2. Technologies Behind Project ARGOS
 
-## 2.1 Process of Data Collection via Eye tracking:
-Data collection for eye tracking research consists of two phases. The first phase is the
-calibration phase, in which the technology obtains information about the size, curvature, and
-position of the eye. The research phase then presents the task of interest for data acquisition.
-Calibration Phase: Iinitial calibration must occur before data collection in order for the eye
-tracker to match the angle of reflected light from the eyes to the specific x-y coordinates on
-the stimulus presentation screen. During the initial calibration period, the participant is
-presented with a series of targets that appear at specified pre-set x-y coordinates.
-Calibration requires the participant to fixate on the targets (called calibration points) as they
-are presented sequentially on the screen. Although instructions can be given (“look at each
-dot when it appears on the screen”) the task can also be presented fully without spoken
-instructions, through use of motion and sound cues that naturally attract fixation.
-Common Research Tasks: The types of tasks most commonly used in eye tracking research
-fall into one of two broad categories: free viewing and task-based. In free-viewing paradigms,
-the participant is simply asked to look at one or more images while the pattern of eye gaze is
-recorded. Free viewing is typically used to study what preferentially attracts and maintains
-attention naturally, and has been used in studies of infants through adults and with individuals
-with and without disabilities.
-In task-based paradigms, the participant searches the image(s) on the basis of some
-instruction. Often, the participant may be instructed to make a judgment about the image, for
-instance, to determine the emotion on a face or find a target on the screen.
+🧠 MediaPipe (Google AI Library)
+MediaPipe is an open-source cross-platform framework developed by Google, optimised for building real-time perception pipelines. It provides robust eye and facial landmark detection using deep learning models.
+Used for: Eye-gaze detection (left, right, center) and blink detection.
+Why: Lightweight, fast, Python-compatible, and suitable for edge computing.
 
-## 2.2 Quantifying the Data Recorded in Eye Tracking: Dependent Measures:
-To quantify the stream of data recording the x-y coordinates of the participants’ gaze, each
-stimulus image is divided into “regions” or “areas of interest” using a drawing program in the
-eye tracking software. Each area of interest is enclosed within a border, and what constitutes
-an area of interest is determined by the experimental question.
-The software will determine when the point-of-gaze being recorded falls within or outside
-any given area, by matching the calculated eye position from the incoming data stream to the
-x-y coordinates of each area of interest on the stimulus monitor. Several dependent measures
-can be obtained from this input stream, including patterns of fixation, saccades (that is, the
-rapid eye movements between fixations), and pupil dilation.
+☁️ Firebase Realtime Database
+Firebase acts as the cloud-based communication bridge between the eye-tracking Python script and the ESP32 robot. MediaPipe writes real-time gaze data to Firebase, which the ESP32 reads instantly to act upon.
+Used for: Cloud communication, real-time motor commands.
+Why: Seamless syncing between devices without needing direct serial connection.
 
-* Eye movement can be regarded as a pivotal real-time input medium for humancomputer communication, which is especially important for people with physical
-disability. The proposed system focuses on providing a simple and convenient
-interactive mode by only using user's eye.
-* We shall be using eye tracking primarily for mouse controlling. Our goal is to achieve
-basic mouse activity and traversal just by using eye movements. It includes, Scrolling,
-Cursor Traversal and Clicking (Left and right).
+🔧 ESP32 Arduino Microcontroller
+ESP32 is a powerful, low-cost Wi-Fi and Bluetooth-enabled microcontroller capable of running Arduino code and controlling motors.
+Used for: Driving the motors of the wheelchair based on cloud commands.
+Why: Ideal for real-time robotics with wireless connectivity and GPIO support.
 
-* Project Components:
-1. Python
-2. OpenCV
-3. NumPy
-4. Webcam
-* In recent years, with the development of better and cheaper components for eye gaze
-interaction, low-cost eye trackers have been produced by several high-profile
-companies, such as Tobii's EyeX tracker, Gaze Point’s GP3 tracker, and the Eye Tribe
-Tracker. As eye tracking gear gets cheaper, new applications with the concept of
-using eye tracking in HCI are clearly beginning to blossom.
+3. Project Objectives
 
-![1](https://user-images.githubusercontent.com/43038862/120959168-d21b3980-c776-11eb-8b8a-166ab58ac66a.JPG)
+Enable eye-controlled movement of a prototype wheelchair using real-time computer vision.
+Develop a Python-based gaze detection system that requires no physical interaction.
+Build an ESP32-powered robotic car chassis to act as a proof-of-concept wheelchair.
+Ensure the entire system is cost-effective, wireless, and accessible for future assistive tech implementations.
 
-# 3. Result and Outcomes
-* Initially, we had aimed at building a Wheel Chair similar to that of Stefan Hawking’s.
-But later, we realised that a major drawback of Hawking’s chair is time delay. His
-model first captured the image and then transferred it to detection module which
-caused a major time lag and required a lot of database space.
-* Hence, we decided to overcome this flaw and increase the accuracy of our model by
-creating a real time low-cost Gaze detection with an accuracy rate of 98%.
-* Our model performs real time detection of the pupil using the CV-2 tools and hence
-results in 0-time lag.
-* Our model is also equipped with eye-controlled keyboard typing with the help of gaze
-ratio at an accuracy rate of 95%. The user of our model can type and express just by
-looking at the letters.
-* The eye directive wheelchair prototype requires no human contact and is a life saviour
-for people suffering from Quadriplegia, disease that restricts all body movement
-except eye and eyebrow muscle.
-* The novelty of our system lies in the fact that no part of the system physically
-interacts with the user, as a result making him feel comfortable. A mounted camera
-tracks the eye movement and controls the wheelchair, thus enabling the patient to
-move around with confidence. The patient’s family will also be able to track his
-whereabouts by looking at database updates.
+4. Development Stages of Project ARGOS
+🔍 Stage 1: Ideation and Research
+The student IVP team brainstormed and researched existing assistive technologies, identifying speed, cost, and real-time responsiveness as common limitations. They explored how AI tools like MediaPipe could offer a low-cost alternative to expensive commercial eye trackers.
+
+🛠 Stage 2: Assembling the Proof-of-Concept Wheelchair
+A basic robotic car chassis was assembled with two motors and an ESP32 development board to mimic a compact wheelchair. Power supply, motor drivers (L298N), and wheels were configured for forward, left, right, and stop movements.
+
+💻 Stage 3: MediaPipe Gaze Tracking (Python)
+Students wrote a Python script using OpenCV + MediaPipe to detect:
+Eye position
+Direction (left, right, center)
+Blink detection
+The script translated this input into text commands (“LEFT”, “RIGHT”, “FORWARD”, “STOP”) and uploaded them to Firebase RTDB.
+
+🌐 Stage 4: Firebase Integration
+
+Firebase acted as the cloud gateway. The Python program updated a field in the Firebase RTDB, while the ESP32 constantly listened for changes using the Firebase ESP32 library. On detecting a new value, the ESP32 triggered motor actions accordingly.
+
+🔄 Stage 5: Testing, Iteration, Refinement
+
+Extensive testing was done to improve:
+Eye detection accuracy
+Motor responsiveness
+Turning precision
+Motor power values were calibrated to ensure smoother left/right turns using analogWrite on the motor PWM pins in Arduino. Multiple iterations were performed to reduce lag and increase stability.
+
+5. How the System Works (Overview)
+
+1. Gaze Detection (MediaPipe)
+Camera → Python Script → Detects eye direction → Sends string command to Firebase.
+
+2. Command Relay (Firebase)
+Realtime Database updates → ESP32 checks Firebase every few milliseconds.
+
+3. Motor Control (ESP32)
+ESP32 reads command → Translates into motor action → Moves the prototype car.
+
+6. Outcome & Impact
+Zero lag in control—real-time reaction to eye movement.
+No physical contact needed—fully touch-free.
+Achieved 98% accuracy in detecting gaze direction and blink using just a laptop webcam.
+Demonstrated potential for affordable assistive mobility, especially in low-resource settings.
+
+7. Future Development Ideas
+Integration with GPS for outdoor use.
+Voice fallback system for redundancy.
+Multi-device syncing for family members to track real-time location.
+Integration with medical alerts and patient monitoring systems.
+
+8. Conclusion
+Project ARGOS showcases how AI + hardware + student innovation can come together to solve real-world problems. This prototype, while small, lays the foundation for accessible assistive technology solutions that could transform lives.With continuous iterations, Project ARGOS can evolve from a school project into a life-changing system for those with mobility challenges.
