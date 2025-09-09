@@ -1,9 +1,8 @@
 Project ARGOS: Eye-Controlled ESP32 Wheelchair for Assistive Mobility
+
 1. Introduction: The Need for Innovation in Assistive Technology
 
-Paralysis affects millions worldwide—restricting voluntary muscle movement due to damage along the neural pathways between the brain and muscles. While advances in medicine have improved diagnosis and treatment, motor rehabilitation remains a significant challenge for individuals with conditions such as quadriplegia, ALS (Lou Gehrig’s Disease), or spinal cord injuries.
-
-Project ARGOS emerges as an innovative response—a proof-of-concept smart wheelchair prototype controlled entirely by eye movements, enabling hands-free mobility through the integration of computer vision, cloud computing, and robotics.
+Paralysis affects millions worldwide—restricting voluntary muscle movement due to damage along the neural pathways between the brain and muscles. While advances in medicine have improved diagnosis and treatment, motor rehabilitation remains a significant challenge for individuals with conditions such as quadriplegia, ALS (Lou Gehrig’s Disease), or spinal cord injuries.Project ARGOS emerges as an innovative response—a proof-of-concept smart wheelchair prototype controlled entirely by eye movements, enabling hands-free mobility through the integration of computer vision, cloud computing, and robotics.
 
 Named after Argos Panoptes, the all-seeing giant of Greek mythology, the system acts as the "eyes" for users who are otherwise immobilised. With no physical input devices needed, Project ARGOS uses AI to translate gaze direction and blinking into motion commands.
 
@@ -25,7 +24,6 @@ Used for: Driving the motors of the wheelchair based on cloud commands.
 Why: Ideal for real-time robotics with wireless connectivity and GPIO support.
 
 3. Project Objectives
-
 Enable eye-controlled movement of a prototype wheelchair using real-time computer vision.
 Develop a Python-based gaze detection system that requires no physical interaction.
 Build an ESP32-powered robotic car chassis to act as a proof-of-concept wheelchair.
@@ -46,11 +44,9 @@ Blink detection
 The script translated this input into text commands (“LEFT”, “RIGHT”, “FORWARD”, “STOP”) and uploaded them to Firebase RTDB.
 
 🌐 Stage 4: Firebase Integration
-
 Firebase acted as the cloud gateway. The Python program updated a field in the Firebase RTDB, while the ESP32 constantly listened for changes using the Firebase ESP32 library. On detecting a new value, the ESP32 triggered motor actions accordingly.
 
 🔄 Stage 5: Testing, Iteration, Refinement
-
 Extensive testing was done to improve:
 Eye detection accuracy
 Motor responsiveness
